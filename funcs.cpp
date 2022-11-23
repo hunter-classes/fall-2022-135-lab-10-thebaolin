@@ -1,14 +1,14 @@
-#include <iostream>
-#include <string>
-#include "movie.h"
 #include "time.h"
+#include "movie.h"
 #include "timeslot.h"
+#include <string>
 using namespace std;
 
 //A
 int minutesSinceMidnight(Time time){
     return (time.h * 60) + time.m;
 }
+
 int minutesUntil(Time earlier, Time later){
     return ((later.h - earlier.h) * 60 ) + (later.m - earlier.m);
 }
@@ -17,6 +17,7 @@ int minutesUntil(Time earlier, Time later){
 Time helperTime(int minutes){
     return {minutes / 60, minutes % 60};
 }
+
 Time addMinutes(Time time0, int min){
     return helperTime(minutesSinceMidnight(time0) + min);
 }
@@ -24,6 +25,7 @@ Time addMinutes(Time time0, int min){
 //C
 string getMovie(Movie mv){
     string g;
+
     switch (mv.genre) {
         case ACTION   : g = "ACTION"; break;
         case COMEDY   : g = "COMEDY"; break;
@@ -34,12 +36,38 @@ string getMovie(Movie mv){
     return mv.title + " " + g + " (" + to_string(mv.duration) + " min)";
 }
 
-string getTimeSlot(TimeSlot ts){
-    return getMovie(ts.movie) + " [starts at " + getTime(ts.startTime) + ", ends by " + getTime(addMinutes(ts.startTime, ts.movie.duration)) + "]";
+string getTimeSlot(TimeSlot ts) {
+    Time end = addMinutes(ts.startTime, ts.movie.duration);
+
+    string newstring = getMovie(ts.movie);
+    newstring += " [starts at " + to_string(ts.startTime.h) + ":" + to_string(ts.startTime.m) + ", ends by " + to_string(end.h) + ":" + to_string(end.m) + "] ";
+    return newstring;
 }
 
+
+//D
 TimeSlot scheduleAfter(TimeSlot ts, Movie nextMovie){
     TimeSlot nextTimeslot = {nextMovie, addMinutes(ts.startTime, ts.movie.duration)};
+
     return nextTimeslot;
+}
+
+//E
+bool timeOverlap(TimeSlot ts1, TimeSlot ts2) {
+    TimeSlot early, late;
+
+    if(minutesUntil(ts1.startTime, ts2.startTime) < 0) {
+        early = ts2;
+        late = ts1;
+    }
+    else {
+        early = ts1; 
+        late = ts2;
+    }
+
+    if(minutesUntil(early.startTime, late.startTime) < early.movie.duration)
+        return true;
+
+    return false;
 }
 
