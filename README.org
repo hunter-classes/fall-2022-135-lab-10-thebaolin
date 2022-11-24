@@ -1,10 +1,10 @@
 * Fall 2022 - Lab 10
 
-* Last name:
+* Last name: Chang
 
-* First name:
+* First name: Baolin
 
-* GitHub username:
+* GitHub username: thebaolin
 
 * Notes:
 

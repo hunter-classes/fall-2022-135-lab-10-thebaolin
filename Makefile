@@ -12,4 +12,4 @@ tests.o: tests.cpp doctest.h funcs.h
 funcs.o: funcs.cpp funcs.h time.h movie.h timeslot.h
 
 clean:
-	rm -f *.o
+	rm -f *.o main tests

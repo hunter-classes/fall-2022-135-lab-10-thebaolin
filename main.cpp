@@ -4,20 +4,17 @@
 using namespace std;
 
 int main(){
-    //A
     Time time = {8,30};
     cout<< minutesSinceMidnight(time)<< " minutes since midnight from "<< time.h<< ":"<< time.m<< "\n";
 
     Time later = {12,50};
     cout<< minutesUntil(time,later)<< " minutes from "<< time.h<< ":"<< time.m<< " until "<< later.h<< ":"<< later.m<< "\n";
 
-    //B
     Time time0 = {8, 30};
     int add_mins = 75;
     Time time1 = addMinutes(time0, add_mins);
     cout<< time1.h<< ":"<< time1.m<< " is "<< add_mins<< " minutes after "<< time0.h<< ":"<< time0.m<< "\n";
 
-    //C
     Movie movie3 = {"Home Alone", DRAMA, 121};
     Movie movie4 = {"Nightmare Before Christmas",THRILLER, 131};
 

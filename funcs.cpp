@@ -70,4 +70,3 @@ bool timeOverlap(TimeSlot ts1, TimeSlot ts2) {
 
     return false;
 }
-
